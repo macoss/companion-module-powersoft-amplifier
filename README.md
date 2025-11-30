@@ -98,7 +98,7 @@ This module can be installed from the Companion module manager.
 ## Support
 
 For issues, feature requests, or questions:
-- GitHub: https://github.com/bitfocus/companion-module-powersoft-amplifier
+- GitHub: https://github.com/macoss/companion-module-powersoft-amplifier
 - Companion Slack: https://bitfocus.io/slack
 
 ## License

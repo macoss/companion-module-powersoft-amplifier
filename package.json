@@ -9,7 +9,7 @@
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/bitfocus/companion-module-powersoft-amplifier.git"
+		"url": "git+https://github.com/macoss/companion-module-powersoft-amplifier.git"
 	},
 	"dependencies": {
 		"@companion-module/base": "~1.11.3"

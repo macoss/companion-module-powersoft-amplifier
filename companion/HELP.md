@@ -142,6 +142,6 @@ For more technical details, refer to the Powersoft X-DSP Protocol Documentation.
 ## Support
 
 For questions or issues:
-- GitHub Issues: https://github.com/bitfocus/companion-module-powersoft-amplifier/issues
+- GitHub Issues: https://github.com/macoss/companion-module-powersoft-amplifier/issues
 - Companion Forum: https://github.com/bitfocus/companion/discussions
 - Bitfocus Slack: https://bitfocus.io/slack
