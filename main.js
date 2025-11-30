@@ -11,6 +11,7 @@ class ModuleInstance extends InstanceBase {
 		this.protocol = new PowersoftProtocol(this)
 		this.pollInterval = null
 		this.reconnectInterval = null
+		this.channelCount = 4 // Default to 4, will be updated from amplifier
 	}
 
 	async init(config) {
@@ -119,8 +120,9 @@ class ModuleInstance extends InstanceBase {
 			
 			this.updateStatus(InstanceStatus.Ok)
 
-			// Get amplifier info
+			// Get amplifier info and channel count
 			this.getAmplifierInfo()
+			this.getAmplifierChannelCount()
 
 			// Start polling for status
 			this.startPolling()
@@ -185,6 +187,22 @@ class ModuleInstance extends InstanceBase {
 			}
 		} catch (error) {
 			this.log('warn', `Failed to get amplifier info: ${error.message}`)
+		}
+	}
+
+	// Get amplifier channel count
+	async getAmplifierChannelCount() {
+		try {
+			const channelCount = await this.protocol.getChannelCount()
+			if (channelCount !== null) {
+				this.channelCount = channelCount
+				this.log('info', `Amplifier has ${channelCount} channels`)
+
+				// Update actions with new channel count
+				this.updateActions()
+			}
+		} catch (error) {
+			this.log('warn', `Failed to get channel count: ${error.message}`)
 		}
 	}
 

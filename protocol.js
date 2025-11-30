@@ -8,6 +8,8 @@ const DEFAULT_PORT = 1234
 // Command codes
 const COMMANDS = {
 	PING: 0,
+	READGM: 1,
+	WRITEOUTMUTE: 3,
 	STANDBY: 14,
 	INFO: 11,
 }
@@ -15,6 +17,8 @@ const COMMANDS = {
 // Response command codes (request + 128)
 const RESPONSES = {
 	PING: 255,
+	READGM: 254,
+	WRITEOUTMUTE: 252,
 	STANDBY: 241,
 	INFO: 244,
 }
@@ -269,6 +273,26 @@ class PowersoftProtocol {
 		return null
 	}
 
+	// Get channel count from amplifier
+	async getChannelCount() {
+		try {
+			const response = await this.sendCommand(COMMANDS.READGM)
+			if (response.cmd === RESPONSES.READGM && response.data.length >= 52) {
+				// answer_ok is at byte 0
+				const answerOk = response.data[0]
+				// num_channels is at byte 1
+				const numChannels = response.data[1]
+
+				if (answerOk === 1) {
+					return numChannels
+				}
+			}
+		} catch (error) {
+			this.instance.log('error', `Get channel count failed: ${error.message}`)
+		}
+		return null
+	}
+
 	// Parse null-terminated string from buffer
 	parseNullTerminatedString(buffer, offset, maxLength) {
 		let str = ''
@@ -326,6 +350,33 @@ class PowersoftProtocol {
 			}
 		} catch (error) {
 			this.instance.log('error', `Set standby status failed: ${error.message}`)
+		}
+		return false
+	}
+
+	// Set output channel mute
+	async setOutputMute(channel, mute) {
+		try {
+			// Send WRITEOUTMUTE command
+			const data = Buffer.alloc(4)
+			data[0] = channel // Channel 0-3
+			data[1] = mute ? 1 : 0 // 0 = unmute, 1 = mute
+			data[2] = 0
+			data[3] = 0
+
+			const response = await this.sendCommand(COMMANDS.WRITEOUTMUTE, data)
+			if (response.cmd === RESPONSES.WRITEOUTMUTE && response.data.length >= 4) {
+				const answerOk = response.data[0]
+				const responseChannel = response.data[1]
+				const responseMute = response.data[2]
+
+				// Verify response matches request
+				if (answerOk === 1 && responseChannel === channel && responseMute === (mute ? 1 : 0)) {
+					return true
+				}
+			}
+		} catch (error) {
+			this.instance.log('error', `Set output mute failed: ${error.message}`)
 		}
 		return false
 	}

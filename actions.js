@@ -1,4 +1,13 @@
 module.exports = function (self) {
+	// Get channel count from amplifier, default to 4 if not yet detected
+	const channelCount = self.channelCount || 4
+
+	// Build channel choices dynamically based on channel count
+	const channelChoices = []
+	for (let i = 0; i < channelCount; i++) {
+		channelChoices.push({ id: i, label: `Channel ${i + 1}` })
+	}
+
 	self.setActionDefinitions({
 		power_on: {
 			name: 'Power On',
@@ -71,6 +80,75 @@ module.exports = function (self) {
 					}
 				} catch (error) {
 					self.log('error', `Ping error: ${error.message}`)
+				}
+			},
+		},
+		mute_channel: {
+			name: 'Mute Channel',
+			options: [
+				{
+					id: 'channel',
+					type: 'dropdown',
+					label: 'Channel',
+					default: 0,
+					choices: channelChoices,
+				},
+			],
+			callback: async (event) => {
+				try {
+					const success = await self.protocol.setOutputMute(event.options.channel, true)
+					if (success) {
+						self.log('info', `Channel ${event.options.channel + 1} muted`)
+					} else {
+						self.log('warn', `Failed to mute channel ${event.options.channel + 1}`)
+					}
+				} catch (error) {
+					self.log('error', `Mute channel error: ${error.message}`)
+				}
+			},
+		},
+		unmute_channel: {
+			name: 'Unmute Channel',
+			options: [
+				{
+					id: 'channel',
+					type: 'dropdown',
+					label: 'Channel',
+					default: 0,
+					choices: channelChoices,
+				},
+			],
+			callback: async (event) => {
+				try {
+					const success = await self.protocol.setOutputMute(event.options.channel, false)
+					if (success) {
+						self.log('info', `Channel ${event.options.channel + 1} unmuted`)
+					} else {
+						self.log('warn', `Failed to unmute channel ${event.options.channel + 1}`)
+					}
+				} catch (error) {
+					self.log('error', `Unmute channel error: ${error.message}`)
+				}
+			},
+		},
+		toggle_mute_channel: {
+			name: 'Toggle Mute Channel',
+			options: [
+				{
+					id: 'channel',
+					type: 'dropdown',
+					label: 'Channel',
+					default: 0,
+					choices: channelChoices,
+				},
+			],
+			callback: async (event) => {
+				try {
+					// Note: To implement toggle properly, we would need to track mute state
+					// For now, this is a placeholder that could be enhanced with state tracking
+					self.log('warn', 'Toggle mute requires state tracking - not yet implemented')
+				} catch (error) {
+					self.log('error', `Toggle mute error: ${error.message}`)
 				}
 			},
 		},
