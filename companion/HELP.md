@@ -66,13 +66,13 @@ Useful for monitoring network connectivity to the amplifier.
 
 The module provides the following variables that can be used in button text or other locations:
 
-- `$(powersoft-quattrocanali:connection_status)` - Connection status (Connected/Disconnected)
-- `$(powersoft-quattrocanali:power_status)` - Power status (Online/Standby/Unknown)
-- `$(powersoft-quattrocanali:manufacturer)` - Manufacturer name
-- `$(powersoft-quattrocanali:family)` - Product family
-- `$(powersoft-quattrocanali:model)` - Amplifier model
-- `$(powersoft-quattrocanali:serial)` - Serial number
-- `$(powersoft-quattrocanali:last_error)` - Last error message
+- `$(powersoft-amplifier:connection_status)` - Connection status (Connected/Disconnected)
+- `$(powersoft-amplifier:power_status)` - Power status (Online/Standby/Unknown)
+- `$(powersoft-amplifier:manufacturer)` - Manufacturer name
+- `$(powersoft-amplifier:family)` - Product family
+- `$(powersoft-amplifier:model)` - Amplifier model
+- `$(powersoft-amplifier:serial)` - Serial number
+- `$(powersoft-amplifier:last_error)` - Last error message
 
 ## Automatic Channel Detection
 
@@ -142,6 +142,6 @@ For more technical details, refer to the Powersoft X-DSP Protocol Documentation.
 ## Support
 
 For questions or issues:
-- GitHub Issues: https://github.com/bitfocus/companion-module-powersoft-quattrocanali/issues
+- GitHub Issues: https://github.com/bitfocus/companion-module-powersoft-amplifier/issues
 - Companion Forum: https://github.com/bitfocus/companion/discussions
 - Bitfocus Slack: https://bitfocus.io/slack

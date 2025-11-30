@@ -1,6 +1,6 @@
-# companion-module-powersoft-quattrocanali
+# companion-module-powersoft-amplifier
 
-This module provides control for Powersoft X Series amplifiers (Duecanali, Quattrocanali, and Ottocanali) via UDP protocol.
+This module provides control for Powersoft X Series amplifiers via UDP protocol.
 
 ## Supported Models
 
@@ -100,7 +100,7 @@ This module can be installed from the Companion module manager.
 ## Support
 
 For issues, feature requests, or questions:
-- GitHub: https://github.com/bitfocus/companion-module-powersoft-quattrocanali
+- GitHub: https://github.com/bitfocus/companion-module-powersoft-amplifier
 - Companion Slack: https://bitfocus.io/slack
 
 ## License

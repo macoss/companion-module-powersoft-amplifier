@@ -1,12 +1,12 @@
 {
-	"id": "powersoft-quattrocanali",
-	"name": "Powersoft Quattrocanali",
-	"shortname": "quattrocanali",
-	"description": "This module provides power control for Powersoft Quattrocanali amplifiers via UDP protocol",
+	"id": "powersoft-amplifier",
+	"name": "Powersoft Amplifier",
+	"shortname": "amplifier",
+	"description": "This module provides control for Powersoft X Series amplifiers (Duecanali, Quattrocanali, Ottocanali) via UDP protocol",
 	"version": "0.0.1",
 	"license": "MIT",
-	"repository": "git+https://github.com/bitfocus/companion-module-powersoft-quattrocanali.git",
-	"bugs": "https://github.com/bitfocus/companion-module-powersoft-quattrocanali/issues",
+	"repository": "git+https://github.com/bitfocus/companion-module-powersoft-amplifier.git",
+	"bugs": "https://github.com/bitfocus/companion-module-powersoft-amplifier/issues",
 	"maintainers": [
 		{
 			"name": "Rick Russell",
@@ -19,9 +19,9 @@
 		"apiVersion": "0.0.0",
 		"entrypoint": "../main.js"
 	},
-	"legacyIds": [],
+	"legacyIds": ["powersoft-quattrocanali"],
 	"manufacturer": "Powersoft",
-	"products": ["Quattrocanali Amps"],
+	"products": ["Duecanali", "Quattrocanali", "Ottocanali"],
 	"keywords": ["amplifier",
 		"audio"]
 }
