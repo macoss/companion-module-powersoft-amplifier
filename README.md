@@ -89,7 +89,7 @@ Enable debug logging in Companion to see detailed protocol communication.
 
 - Companion v3.0 or higher
 - Network connectivity to Powersoft amplifier
-- Powersoft X Series amplifier (Duecanali, Quattrocanali, or Ottocanali)
+- Powersoft amplifier (That supports the X series UDP protocol that seems to be most Powersoft amps)
 
 ## Installation
 
