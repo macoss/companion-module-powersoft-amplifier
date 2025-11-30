@@ -1,12 +1,10 @@
 # companion-module-powersoft-amplifier
 
-This module provides control for Powersoft X Series amplifiers via UDP protocol.
+This module provides control for Powersoft amplifiers via the UDP protocol.
 
-## Supported Models
+## Tested Models
 
-- **Duecanali** (2 channels)
 - **Quattrocanali** (4 channels)
-- **Ottocanali** (8 channels)
 
 ## Features
 
